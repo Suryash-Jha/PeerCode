@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Main Contest Window</title>
+</head>
+<body>
+    <ul>
+        <li><a href="Home">Home</a></li>
+
+        <li><a href="Report.html">Report</a></li>
+        <li><a href="SignUp.html">Sign Up</a></li>
+        <li><a href="Login.html">Log In</a></li>
+                
+      </ul>
+      
+    <div class="container">
+    <div class="question">
+        <h3 style="text-align: center;">QUESTION 1</h3>
+        <br>
+        <p style ="text-align: left; margin: 5px;">
+            Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+          <br><br>
+        You may assume that each input would have exactly one solution, and you may not use the same element twice.
+        <br><br>
+        You can return the answer in any order.
+        <br><br>
+        Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+        <br><br>
+      You may assume that each input would have exactly one solution, and you may not use the same element twice.
+      <br><br>
+      You can return the answer in any order.
+      <br><br>
+      Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+      <br><br>
+    You may assume that each input would have exactly one solution, and you may not use the same element twice.
+    <br><br>
+    You can return the answer in any order.
+    <br><br>
+        </p>
+    </div>
+    <div class="container-col">
+        <div class="editor">
+            <select name="language" id="language">
+                <option value="C++">C++</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+              </select>
+            <textarea placeholder="Write Your Code here..." class="editor-text"></textarea>
+            <textarea placeholder="Console Window" id="console-text"></textarea>
+        </div>
+        <div class="container-but">
+            <button class="console" onclick="myFunction()">CONSOLE</button>
+            <button class="test">TEST</button>
+            <button class="submit">SUBMIT</button>
+        </div>
+    </div>
+
+    </div>
+<script>
+function myFunction() {
+  var x = document.getElementById("console-text");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+</body>
+</html>
