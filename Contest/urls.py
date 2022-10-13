@@ -1,5 +1,7 @@
 from django.urls import path
 from . import views
 urlpatterns = [
-    path('<str:id>', views.contest, name='contest'),
+    path('contest/<str:id>', views.contest, name='contest'),
+    path('create/', views.create, name='create'),
+    path('caesar/', views.caesar, name="caesar"),
 ]

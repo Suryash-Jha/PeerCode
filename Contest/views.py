@@ -21,3 +21,13 @@ def contest(request, id):
     """
     return render(request, 'Contest/index.html', {'id': id, 'content': content})
 
+def create(request):
+    r= "\<\?xml version=\"1.0\" encoding=\"UTF-8\"\?>
+<Response><Say voice=\"alice\">Hello Guys.</Say><Pause length=\"1\"/><Say voice=\"alice\">Let us know if we can help you in any way during your development.</Say></Response>"
+    return HttpResponse(r)
+    # return HttpRer
+
+def caesar(request):
+    return render(request, 'Contest/caesar.html')
+    
+

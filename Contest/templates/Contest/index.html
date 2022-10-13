@@ -15,7 +15,7 @@
         <li><a href="Home">Home</a></li>
 
         <li><a href="Report.html">Report</a></li>
-        <li><a href="SignUp.html">Sign Up</a></li>
+        <li id="finish" onclick="fins()"><a href="Finish.html">Finish Test</a></li>
         <li><a href="Login.html">Log In</a></li>
                 
       </ul>
@@ -49,6 +49,9 @@
 
     </div>
 <script>
+  function fins(){
+    alert("Test Finished");
+  }
 function myFunction() {
   var x = document.getElementById("console-text");
   if (x.style.display === "none") {

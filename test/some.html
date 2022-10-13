@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Main Contest Window</title>
+</head>
+
+<body>
+  <ul>
+    <li><a href="Home">Home</a></li>
+
+    <li><a href="Report.html">Report</a></li>
+    <li><a href="SignUp.html">Sign Up</a></li>
+    <li><a href="Login.html">Log In</a></li>
+
+  </ul>
+  <div style="display: flex; flex-direction: column;">
+    <div class="details">
+      <label for="easy">Easy: </label>
+      <input type="number" id="easyNum" min="0" max="5">
+    </div>
+    <div class="details">
+      <label for="medium">Medium: </label>
+      <input type="number" id="mediumNum" min="0" max="5">
+    </div>
+    <div class="details">
+      <label for="hard">Hard: </label>
+      <input type="number" id="hardNum" min="0" max="5">
+    </div>
+    <button onclick="myFunction()">Submit</button>
+  </div>
+
+</body>
+
+</html>
