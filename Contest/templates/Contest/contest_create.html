@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +6,71 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		body{
+			background-color: #f1f1f1;
+			font-family: 'Ubuntu', sans-serif;
+		}
+		.container{
+			height: 90vh;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+
+		}
+		.container h2{
+			margin: 10px;
+		}
+		.containRow{
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: center;
+			margin: 10px;
+			background-color: #cecbcb;
+			height: 8vh;
+			/* width:100%; */
+			border-radius:  60px;
+		}
+		img {
+			height: 30px;
+			width:30px;
+			border-radius: 50px;
+			margin: 10px;
+		}
+		.containRow span{
+			font-size: 15px;
+			margin: 5px;
+			/* border: 1px solid black; */
+		}
+
+	</style>
 </head>
 <body>
+	<div class="containRow"><img src="{% static 'img/abc.jpg' %}" alt="Profile"><span>{{name}}</span></div>
+	<div class="container">
 	<h1>Create Contest</h1>
-	<input type="number" min="0" max="4">Easy</input>
-	<input type="number" min="0" max="4">Medium</input>
-	<input type="number" min="0" max="4">Hard</input>
-	<select>
-		<option value="1">Array</option>
-		<option value="2">Linked List</option>
-
-	</select>
+	<form method="post"> 
+		{% csrf_token %}
+		
+		<h2>Easy: <input type="number" value="1" min="0" max="4" name="easy"></input></h2>
+		<h2>Medium: <input type="number" value="1" min="0" max="4" name="medium"></input></h2>
+		<h2>Hard: <input type="number" value="1" min="0" max="4" name="hard"></input></h2>
+		<h2>Topic: <select name="topic">
+		{% for i in questions%}
+		<option value="{{i.slug}}">{{i.name}}</option>
+		{% endfor %}
+	</select></h2>
+	<button type="submit">Submit</button>
+	</form>
+	<p>{{msg}}</p>
+</div>
 
 </body>
 </html>
