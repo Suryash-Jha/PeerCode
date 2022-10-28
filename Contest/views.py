@@ -2,43 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from .models import CreatedContest
+from django.views.decorators.cache import never_cache
 import requests
 import random
-import time
-
-def difficultyQuestions(tag, diffi):
-    headers = {
-    'authority': 'leetcode.com',
-    'accept': '*/*',
-    'accept-language': 'en-US,en;q=0.9',
-    'origin': 'https://leetcode.com',
-    'referer': 'https://leetcode.com/tag/string/',
-    'sec-ch-ua': '"Chromium";v="106", "Google Chrome";v="106", "Not;A=Brand";v="99"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/106.0.0.0 Mobile Safari/537.36',
-    'x-csrftoken': 'sQ8L7NVt84PJfSpPnyGz2HhulIXM28kms50Qnt9fx51v3n7dlEb2NHuHP5Cqw1FJ',
-    'x-newrelic-id': 'UAQDVFVRGwEAXVlbBAg=',
-    }
-
-    json_data = {
-        'operationName': 'getTopicTag',
-        'variables': {
-            'slug': tag,
-        },
-        'query': 'query getTopicTag($slug: String!) {\n  topicTag(slug: $slug) {\n    name\n    slug\n    questions {\n      status\n      questionId\n      questionFrontendId\n      title\n      titleSlug\n      stats\n      difficulty\n      isPaidOnly\n      topicTags {\n        name\n        slug\n        __typename\n      }\n      companyTags {\n        name\n        slug\n        __typename\n      }\n      __typename\n    }\n    frequencies\n    __typename\n  }\n  favoritesLists {\n    publicFavorites {\n      ...favoriteFields\n      __typename\n    }\n    privateFavorites {\n      ...favoriteFields\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment favoriteFields on FavoriteNode {\n  idHash\n  id\n  name\n  isPublicFavorite\n  viewCount\n  creator\n  isWatched\n  questions {\n    questionId\n    title\n    titleSlug\n    __typename\n  }\n  __typename\n}\n',
-    }
-    response = requests.post('https://leetcode.com/graphql', headers=headers, json=json_data).json()
-    # print(response)
-    final= []
-    for i in response['data']['topicTag']['questions']:
-        if i['difficulty']== diffi:
-            final.append(i['titleSlug'])
-    return final
-
+import json
 
 def contestIdGenerator():
     import random
@@ -51,6 +18,16 @@ def contest(request, id):
     Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
           <br><br>
         You may assume that each input would have exactly one solution, and you may not use the same element twice.
+        <br><br>
+        You can return the answer in any order.
+        <br><br>
+        Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+        <br><br>
+      You may assume that each input would have exactly one solution, and you may not use the same element twice.
+      <br><br>
+      You can return the answer in any order.
+      <br><br>
+             You may assume that each input would have exactly one solution, and you may not use the same element twice.
         <br><br>
         You can return the answer in any order.
         <br><br>
@@ -74,6 +51,9 @@ def create(request):
         contest= CreatedContest()
         contest.contest_id= contestIdGenerator()
         # questionlist= difficultyQuestions(resp['topic'], 'EASY')
+        f = open('./static/json/questionsTagDiffi.json')
+        data = json.load(f)
+        f.close()
         lst=[]
         for i in range(int(resp['easy'])):
             lst.append('Easy')
@@ -85,15 +65,16 @@ def create(request):
         questionForContest= []
 
         for i in lst:
-            questionlist= difficultyQuestions(resp['topic'], i)
-            questionForContest.append(random.choice(questionlist))
+            questionlist= data[resp['topic']][i]
+            try:
+                questionForContest.append(random.choice(questionlist))
+            except:
+                return render(request, 'Contest/contest_create.html', {'questions': questions, 'msg': f'No {i} questions for {resp["topic"]} topic, Total {i} questions for {resp["topic"]} topic are {len(questionlist)}'})
         contest.first= questionForContest[0]
         contest.second= questionForContest[1]
         contest.third= questionForContest[2]
         contest.forth= questionForContest[3]
         contest.save()
-
-        # print(questionForContest)
     else:
         return render(request, 'Contest/contest_create.html', {'questions': questions, 'name': "suryash", 'msg': "Please fill the form to create a contest"})
         
@@ -101,6 +82,12 @@ def create(request):
 
 def caesar(request):
     return render(request, 'Contest/caesar.html')
+
+# Change it
+@never_cache
+def listContest(request):
+    data= CreatedContest.objects.all()
+    return render(request, 'Contest/listContest.html', {'contest_list': data, 'c': 0})
     
 def index(request):
     return render(request, "Contest/main.html")

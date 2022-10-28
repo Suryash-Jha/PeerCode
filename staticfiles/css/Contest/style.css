@@ -8,6 +8,14 @@ html, body{
     height: 100%;
 
 }
+#finish{
+    margin: auto;
+    padding: 5px;
+    font-size: larger;
+    border: 2px solid red;
+    background-color: orange;
+    border-radius: 30px;
+}
 .container{
     /* border: 2px solid black; */
     height: 90%;
@@ -61,6 +69,8 @@ textarea{
     /* border: 2px solid red; */
     width:30%;
     overflow-y: scroll;
+ box-shadow: 3px 3px 10px black;
+
 }
 
 
@@ -93,4 +103,9 @@ a{
     padding: 10px;
     height: 50%;
     width: 96%;
+}
+
+textarea, button
+{
+ box-shadow: 3px 3px 5px black;
 }
