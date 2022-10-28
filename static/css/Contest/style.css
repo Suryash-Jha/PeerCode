@@ -69,6 +69,8 @@ textarea{
     /* border: 2px solid red; */
     width:30%;
     overflow-y: scroll;
+ box-shadow: 3px 3px 10px black;
+
 }
 
 
@@ -101,4 +103,9 @@ a{
     padding: 10px;
     height: 50%;
     width: 96%;
+}
+
+textarea, button
+{
+ box-shadow: 3px 3px 5px black;
 }

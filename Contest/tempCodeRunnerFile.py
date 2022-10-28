@@ -27,8 +27,9 @@ json_data = {
     'query': 'query getTopicTag($slug: String!) {\n  topicTag(slug: $slug) {\n    name\n    slug\n    questions {\n      status\n      questionId\n      questionFrontendId\n      title\n      titleSlug\n      stats\n      difficulty\n      isPaidOnly\n      topicTags {\n        name\n        slug\n        __typename\n      }\n      companyTags {\n        name\n        slug\n        __typename\n      }\n      __typename\n    }\n    frequencies\n    __typename\n  }\n  favoritesLists {\n    publicFavorites {\n      ...favoriteFields\n      __typename\n    }\n    privateFavorites {\n      ...favoriteFields\n      __typename\n    }\n    __typename\n  }\n}\n\nfragment favoriteFields on FavoriteNode {\n  idHash\n  id\n  name\n  isPublicFavorite\n  viewCount\n  creator\n  isWatched\n  questions {\n    questionId\n    title\n    titleSlug\n    __typename\n  }\n  __typename\n}\n',
 }
 response = requests.post('https://leetcode.com/graphql', headers=headers, json=json_data).json()
-# print(response)
-final= []
-for i in response['data']['topicTag']['questions']:
-    if i['difficulty']== diffi:
-        final.append(i['titleSlug'])
+print(response)
+# final= []
+# for i in response['data']['topicTag']['questions']:
+#     if i['difficulty']== diffi:
+#         final.append(i)
+# return final
