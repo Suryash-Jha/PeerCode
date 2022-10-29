@@ -13,7 +13,7 @@ def contestIdGenerator():
     return ''.join(random.choices(string.ascii_uppercase + string.ascii_lowercase, k=10))
 
 # Create your views here.
-def contest(request, id):
+def contest(request, id, n):
     content= """
     Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
           <br><br>
@@ -84,10 +84,14 @@ def caesar(request):
     return render(request, 'Contest/caesar.html')
 
 # Change it
-@never_cache
+# @never_cache
 def listContest(request):
     data= CreatedContest.objects.all()
-    return render(request, 'Contest/listContest.html', {'contest_list': data, 'c': 0})
+    return render(request, 'Contest/listContest.html', {'contest_list': data})
     
 def index(request):
     return render(request, "Contest/main.html")
+
+def listContestQuestion(request, id):
+    data= CreatedContest.objects.get(contest_id= id)
+    return render(request, 'Contest/listContestQuestion.html', {'contest': data})

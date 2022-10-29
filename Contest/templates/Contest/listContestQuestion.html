@@ -5,9 +5,29 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+
+        }
+    </style>
 </head>
 <body>
-    
+    <p>{{contest.contest_id}}</p>
+    <div class="container">
+        <a href="/contest/{{contest.contest_id}}/1/">{{ contest.first }}</a>
+        <a href="/contest/{{contest.contest_id}}/2/">{{ contest.second }}</a>
+        <a href="/contest/{{contest.contest_id}}/3/">{{ contest.third }}</a>
+        <a href="/contest/{{contest.contest_id}}/4/">{{ contest.forth }}</a>
     </div>
 </body>
 </html>

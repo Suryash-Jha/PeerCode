@@ -11,12 +11,13 @@
 </head>
 <body>
     <div class="container">
+        <h1 style="margin: 10px;">Available Contests</h1>
         {% for i in contest_list %}
         <div class="row">
             ({{ forloop.counter0 }})
             <span> {{i.contest_id}} </span>
             
-            <a href="{{i.contest_id}}/">
+            <a href="{{i.contest_id}}">
                 <button>Join</button>
             </a>
             
