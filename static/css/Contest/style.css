@@ -27,6 +27,13 @@ html, body{
     flex-direction: column;
     width: 70%;
 }
+code {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c04d0a;
+    /* background-color: #d1f8cf; */
+    border-radius: 4px
+}
 #editor{
     display: flex;
     flex-direction: column;
@@ -69,7 +76,10 @@ textarea{
     /* border: 2px solid red; */
     width:30%;
     overflow-y: scroll;
- box-shadow: 3px 3px 10px black;
+    overflow-x: hidden;
+    /* word-wrap: break-word; */
+    /* overflow-wrap: break-word; */
+    box-shadow: 3px 3px 10px black;
 
 }
 
