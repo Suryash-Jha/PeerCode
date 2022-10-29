@@ -5,6 +5,6 @@ urlpatterns = [
     path('create/', views.create, name='create'),
     path('caesar/', views.caesar, name="caesar"),
     path('list/', views.listContest, name='list'),
-    path('list/<str:id>', views.listContestQuestions, name='listQuestions'),
+    # path('list/<str:id>', views.listContestQuestions, name='listQuestions'),
     path('', views.index, name="index"),
 ]
