@@ -8,7 +8,7 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-# import django_heroku
+import django_heroku
 from pathlib import Path
 import os
 
@@ -23,10 +23,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-9sntwx+o7&%e$wsptn@6#0nphwdv656yk+=9iekxhg1pza4o9b'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS= []
-# ALLOWED_HOSTS = ['*/127.0.0.1*', '.herokuapp.com']
+# ALLOWED_HOSTS= []
+ALLOWED_HOSTS = ['*/127.0.0.1*', '.herokuapp.com']
 
 
 # Application definition
@@ -135,4 +136,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-# django_heroku.settings(locals())
+django_heroku.settings(locals())
