@@ -50,7 +50,7 @@ def contest(request, id, n):
     elif n==3:
         slug= data.third
     elif n==4:
-        slug= data.fourth
+        slug= data.forth
     print(slug)
     content= getQuestionContent(slug)
     content= content.replace('\n', '<br />')
